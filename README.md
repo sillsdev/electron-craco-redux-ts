@@ -1,8 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Then [craco](https://github.com/wwlib/cra-craco-electron-example) was added to enable file access using create-react-app. Then [Redux](https://www.npmjs.com/package/redux) was added. Then the scripts were upated to allow debugging and file access.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). `Create-react-app` will manage dependency updates. Then [craco](https://github.com/wwlib/cra-craco-electron-example) was added to enable file access using create-react-app. Then [Redux](https://www.npmjs.com/package/redux) was added. Then the scripts were upated to allow debugging and file access.
 
 ## Basic usage
 
-### `Electron Debugging (from vscode)`
+### Getting Started
+
+The `npm install` command will install the dependencies.
+
+### Electron Debugging (from vscode)
 
 1. From the Chrome browser, install the [react devtools plugin](https://chrome.google.com/webstore/detail/react-developer-tools) and the [redux devtools plugin](https://chrome.google.com/webstore/detail/redux-devtools).
  
@@ -14,8 +18,8 @@ to force the install of react of react and redux devtools into electron.
 
 Subsequently, you can press `F5` to launch Electron with the Chromium browser.
 
-### `Launching the Web version`
-`npm run web-dev`
+### Launching the Web version
+`npm start`
 
 or
 
@@ -27,14 +31,14 @@ Opens [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `Testing`
+### Testing
 
 `npm test` Launches the test runner in the interactive watch mode. There is a single test but it is recommended to use [@testing-library/react](https://www.npmjs.com/package/@testing-library/react)<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `Build Electron App`
+### Build Electron App
 ```
-npm run electron-pack
+npm run build
 npm run dist
 ```
 
