@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Then [craco](https://github.com/wwlib/cra-craco-electron-example) was added to enable file access using create-react-app. Then [Redux](https://www.npmjs.com/package/redux) was added. Then the scripts were upated to allow debugging and file access.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [craco](https://github.com/wwlib/cra-craco-electron-example) was added to enable file access using create-react-app. Then [Redux](https://www.npmjs.com/package/redux) was added. Then the scripts were upated to allow VSCode debugging and file access.
 
 ## Basic usage
 
@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  
 2. Use the command:
 `npm run electron-dev`
-to force the install of react of react and redux devtools into electron.
+to force the install of react and redux devtools into electron.
 
 3. From the debugging tab in VsCode, select `Electron All` from the drop down and press the play button. The page will hot-reload if you make edits.
 
@@ -23,6 +23,8 @@ or
 
 Runs the app in the development mode.<br>
 Opens [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+You will have access to two new tabs in the Dev tools, React and Redux inspectors.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
