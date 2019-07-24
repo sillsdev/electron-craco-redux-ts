@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). `Create-react-app` will manage dependency updates. Then [craco](https://github.com/wwlib/cra-craco-electron-example) was added to enable file access using create-react-app. Then [Redux](https://www.npmjs.com/package/redux) was added. Then the scripts were upated to allow debugging and file access.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [craco](https://github.com/wwlib/cra-craco-electron-example) which enables file access using create-react-app. `Create-react-app` will manage dependency updates and web packaging. Then [Redux](https://www.npmjs.com/package/redux) was added. Then the scripts were upated to allow debugging and file access.
 
 ## Basic usage
 
@@ -12,21 +12,17 @@ The `npm install` command will install the dependencies.
  
 2. Use the command:
 `npm run electron-dev`
-to force the install of react of react and redux devtools into electron.
+to force the install of react and redux devtools into electron.
 
 3. From the debugging tab in VsCode, select `Electron All` from the drop down and press the play button. The page will hot-reload if you make edits.
 
-Subsequently, you can press `F5` to launch Electron with the Chromium browser.
+Subsequently, you can press `F5` to launch Electron with the Chromium browser. If breakpoints are disappearing, check that the debug chooser is still set to `Electron All`.
 
 ### Launching the Web version
-`npm start`
+`npm start` runs the app in the development mode.<br>
+It opens [http://localhost:3000](http://localhost:3000) in the default browser.
 
-or
-
-`npm run web-prod`
-
-Runs the app in the development mode.<br>
-Opens [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You will have access to two new tabs in the Dev tools, React and Redux inspectors. Local file access is disabled in this web version. Web safe file access can still be used. Any code that is not web safe should be wrapped in a condition as is done in [testFs.tsx](https://github.com/sillsdev/electron-craco-redux-ts/blob/943f8e466a56ef9151cb8ac048078991a5121003/src/model/testFs.tsx#L2)
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
@@ -54,11 +50,11 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Ejecting](https://facebook.github.io/create-react-app/docs/available-scripts#npm-run-eject) is not recommended but read the discussion at the link if you are considering it.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Preparing for production
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Warning messages concerning security issues are disabled for development builds in the [electron-dev.js](https://github.com/sillsdev/electron-craco-redux-ts/blob/943f8e466a56ef9151cb8ac048078991a5121003/public/electron-dev.js#L9) and [electron-debug.js](https://github.com/sillsdev/electron-craco-redux-ts/blob/943f8e466a56ef9151cb8ac048078991a5121003/public/electron-debug.js#L9) files on line 9. As you prepare for production, it is recommended to enable these warnings and make any necessary changes to address the [issues](https://github.com/electron/electron/blob/master/docs/tutorial/security.md#electron-security-warnings) they are highlighting.
 
 ## Learn More
 
