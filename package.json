@@ -1,6 +1,6 @@
 {
   "name": "electron-craco-redux",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Boilerplate for web and desktop development",
   "main": "public/electron.js",
   "homepage": "./",
@@ -44,24 +44,21 @@
     "react-player": "^1.11.0",
     "react-redux": "^7.0.3",
     "react-scripts": "^3.0.1",
-    "react-select": "^3.0.4",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "typescript": "^3.5.1",
-    "wait-on": "^3.2.0"
+    "typescript": "^3.5.3"
   },
   "devDependencies": {
-    "@craco/craco": "^5.2.1",
+    "@craco/craco": "^5.2.4",
     "@hot-loader/react-dom": "^16.8.6",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.1",
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.4",
-    "@types/react": "16.8.19",
-    "@types/react-dom": "^16.8.4",
+    "@types/jest": "24.0.16",
+    "@types/node": "12.6.8",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "^16.8.5",
     "@types/react-redux": "^7.0.6",
     "@types/react-router-dom": "^4.3.1",
-    "@types/react-select": "^2.0.19",
     "concurrently": "^4.1.0",
     "craco-plugin-react-hot-reload": "0.0.3",
     "electron": "^5.0.2",
@@ -71,7 +68,8 @@
     "electron-react-devtools": "^0.5.3",
     "env-cmd": "^9.0.3",
     "npm-watch": "^0.6.0",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "wait-on": "^3.2.0"
   },
   "author": {
     "name": "SIL International",
