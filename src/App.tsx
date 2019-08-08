@@ -9,8 +9,8 @@ import { SystemState } from "./store/system/types";
 import { TreeState } from "./store/tree/types";
 import { MediaPlayerState } from "./store/player/types";
 import * as actions from './store';
-import TestFs from "./model/testFs";
-import PlayerZone from "./model/player";
+import TestFs from "./components/testFs";
+import PlayerZone from "./components/player";
 const isElectron = process.env.REACT_APP_MODE === 'electron'
 export type UpdatePlayerParam = React.SyntheticEvent<{ value: string }>;
 
