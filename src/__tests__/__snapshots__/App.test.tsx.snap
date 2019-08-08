@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can render MediaTab snapshot 1`] = `
+<div
+  class="App"
+>
+  <header
+    class="App-header"
+  >
+    <p>
+      Welcome to 
+      <code>
+        Electron - Craco - Redux - Boilerplate
+      </code>
+      .
+    </p>
+  </header>
+  <div
+    class="App-body"
+  >
+    <div
+      class="App-sidebar"
+    >
+      <div>
+        <div
+          class="player-wrapper"
+        >
+          <div
+            class="react-player"
+            style="width: 100%; height: 100%;"
+          >
+            <div
+              style="width: 100%; height: 100%;"
+            >
+              <div />
+            </div>
+          </div>
+        </div>
+        <div
+          class="mediaControls"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  Controls
+                </th>
+                <td>
+                  <button>
+                    Stop
+                  </button>
+                  <button>
+                    Play
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div
+      class="DetailsZone"
+    >
+      <p>
+        : 
+        test
+      </p>
+      <p>
+        <textarea
+          readonly=""
+          rows="20"
+        >
+          Directory listing is not available in the browser.
+        </textarea>
+      </p>
+    </div>
+  </div>
+  <div
+    class="App-footer"
+  />
+</div>
+`;
