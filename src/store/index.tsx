@@ -21,7 +21,7 @@ const allReducers = (state: any, action: any) => {
     state = {
       ...state,
       tree: treeCleanStore,
-      player: playerCleanStore
+      player: playerCleanStore,
     };
   }
   return appReducer(state, action);

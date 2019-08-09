@@ -21,9 +21,9 @@
   flex-direction: row;
   align-content: stretch;
   justify-content: space-between;
-  font-size: calc(10px + .5vmin);
+  font-size: calc(10px + 0.5vmin);
   color: white;
-  padding: 10px; 
+  padding: 10px;
 }
 
 .App-sidebar {
@@ -43,9 +43,9 @@
 
 .player-wrapper {
   position: top;
-  width:inherit;
+  width: inherit;
   padding: 10px;
-  height:300px;
+  height: 300px;
   min-height: 10vh;
   resize: vertical;
   overflow: auto;
@@ -55,11 +55,11 @@
 }
 
 .mediaControls {
-  width:inherit;
+  width: inherit;
 }
 
 .mediaControls table {
-  width: 250px
+  width: 250px;
 }
 .react-player__preview {
   min-height: 40vh;

@@ -5,7 +5,7 @@ const initialState: SystemState = {
   loggedIn: false,
   session: "",
   userName: "",
-  clicks: 0
+  clicks: 0,
 };
 
 export function systemReducer(
@@ -16,7 +16,7 @@ export function systemReducer(
     case UPDATE_SESSION: {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
     }
     default:

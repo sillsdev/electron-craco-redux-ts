@@ -12,7 +12,7 @@ export const treeCleanStore: types.TreeState = {
   folderName: "",
   path: "",
   loaded: false,
-  prevPath: ""
+  prevPath: "",
 };
 
 export function treeReducer(
@@ -23,7 +23,7 @@ export function treeReducer(
     case types.UPDATE_TREE: {
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
     }
     default:

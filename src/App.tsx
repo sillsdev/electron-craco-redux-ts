@@ -1,21 +1,20 @@
-
-import React from 'react';
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import './App.css';
-import { hot } from 'react-hot-loader'
-import { AppState } from './store'
+import "./App.css";
+import { hot } from "react-hot-loader";
+import { AppState } from "./store";
 import { SystemState } from "./store/system/types";
 import { TreeState } from "./store/tree/types";
 import { MediaPlayerState } from "./store/player/types";
-import * as actions from './store';
+import * as actions from "./store";
 import TestFs from "./components/testFs";
 import PlayerZone from "./components/player";
-const isElectron = process.env.REACT_APP_MODE === 'electron'
+const isElectron = process.env.REACT_APP_MODE === "electron";
 export type UpdatePlayerParam = React.SyntheticEvent<{ value: string }>;
 
 interface StateProps {
-  system: SystemState,
+  system: SystemState;
   tree: TreeState;
   player: MediaPlayerState;
 }
@@ -30,7 +29,6 @@ interface DispatchProps {
   onPlay: typeof actions.onPlay;
   onEnded: typeof actions.onEnded;
   onProgress: typeof actions.onProgress;
-
 }
 
 interface AppProps extends StateProps, DispatchProps {
@@ -39,24 +37,32 @@ interface AppProps extends StateProps, DispatchProps {
 
 class App extends React.Component<AppProps> {
   componentDidMount() {
+    const {
+      updateActiveFolder,
+      updateSession,
+      updatePlayerAction,
+    } = this.props;
+
     if (isElectron) {
-      this.props.updateActiveFolder({
+      updateActiveFolder({
         env: "electron",
         path: "local",
-        loaded: true
-      })} else {
-        this.props.updateActiveFolder({
-          env: "web",
-          path: "bing",
-          loaded: true,
-        })}
-    this.props.updateSession({
+        loaded: true,
+      });
+    } else {
+      updateActiveFolder({
+        env: "web",
+        path: "bing",
+        loaded: true,
+      });
+    }
+    updateSession({
       loggedIn: true,
       session: "my_session",
       userName: "User",
-      clicks: 0
+      clicks: 0,
     });
-    this.props.updatePlayerAction({
+    updatePlayerAction({
       url: "http://www.youtube.com/watch?v=Fc1P-AEaEp8",
       //url: "https://www.youtube.com/watch?v=Hz63M3v11nE&t=7",
       playing: false,
@@ -69,80 +75,90 @@ class App extends React.Component<AppProps> {
       loaded: false,
       duration: -1,
       loop: false,
-      seeking: false
-    })
+      seeking: false,
+    });
   }
 
-    // Player Features
+  // Player Features
   playPause = () => {
-    this.props.playPause()
-    console.log('onPlay/PauseApp')
-  }
+    this.props.playPause();
+    console.log("onPlay/PauseApp");
+  };
   stopPlaying = () => {
-    this.props.stopPlaying()
-    console.log('onStopApp')
-  }
+    this.props.stopPlaying();
+    console.log("onStopApp");
+  };
   toggleLoop = () => {
-    this.props.toggleLoop()
-    console.log('ToggleLoopApp')
-  }
+    this.props.toggleLoop();
+    console.log("ToggleLoopApp");
+  };
   onPlay = () => {
-    this.props.onPlay()
-    console.log('onPlayApp')
-  }
+    this.props.onPlay();
+    console.log("onPlayApp");
+  };
   onEnded = () => {
-    this.props.onEnded()
-    console.log('onEndedApp')
-  }
+    this.props.onEnded();
+    console.log("onEndedApp");
+  };
   onProgress = (playState: any) => {
-    this.props.onProgress(playState)
-    console.log('onProgressApp', playState)
-    if (!this.props.player.seeking) {
+    const { onProgress, player } = this.props;
+
+    onProgress(playState);
+    console.log("onProgressApp", playState);
+    if (!player.seeking) {
       //this.setState({player: {played: playState.played}})
       //this.setState(playState)
-  }
-  }
+    }
+  };
   onUpdatePath = () => {
-    console.log('onUpdatePath not defined')
-  } 
-  
+    console.log("onUpdatePath not defined");
+  };
+
   render() {
+    const { player } = this.props;
     return (
       <div className="App">
         <header className="App-header">
-        <p>Welcome to <code>Electron - Craco - Redux - Boilerplate</code>.</p>
+          <p>
+            Welcome to <code>Electron - Craco - Redux - Boilerplate</code>.
+          </p>
         </header>
         <div className="App-body">
           <div className="App-sidebar">
-          <PlayerZone 
-            url={this.props.player.url} 
-            playing={this.props.player.playing}
-            muted={this.props.player.muted}
-            playbackRate={this.props.player.playbackRate}
-            volume={this.props.player.volume}
-            loop={this.props.player.loop}
-            played={this.props.player.played}
-            playPause={this.playPause}
-            stopPlaying={this.stopPlaying}
-            toggleLoop={this.toggleLoop}
-            onPlay={this.onPlay}
-            onEnded={this.onEnded}
-            onProgress={this.onProgress}
-          />
+            <PlayerZone
+              url={player.url}
+              playing={player.playing}
+              muted={player.muted}
+              playbackRate={player.playbackRate}
+              volume={player.volume}
+              loop={player.loop}
+              played={player.played}
+              playPause={this.playPause}
+              stopPlaying={this.stopPlaying}
+              toggleLoop={this.toggleLoop}
+              onPlay={this.onPlay}
+              onEnded={this.onEnded}
+              onProgress={this.onProgress}
+            />
           </div>
           <div className="DetailsZone">
-            <p>{process.env.REACT_APP_MODE}: {process.env.NODE_ENV}</p>
-            <p><textarea value={TestFs.getDirectoryListing()} readOnly rows={20} /></p>
+            <p>
+              {process.env.REACT_APP_MODE}: {process.env.NODE_ENV}
+            </p>
+            <p>
+              <textarea
+                value={TestFs.getDirectoryListing()}
+                readOnly
+                rows={20}
+              />
+            </p>
           </div>
         </div>
-        <div className="App-footer">
-          
-        </div>
+        <div className="App-footer" />
       </div>
     );
   }
-};
-
+}
 
 const mapStateToProps = (state: AppState) => ({
   system: state.system,
@@ -153,16 +169,23 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   ...bindActionCreators(
     {
-    updateSession: actions.updateSession,
-    updateActiveFolder: actions.updateActiveFolder,
-    updatePlayerAction: actions.updatePlayerAction,
-    playPause: actions.playPause,
-    stopPlaying: actions.stopPlaying,
-    toggleLoop: actions.toggleLoop,
-    onPlay: actions.onPlay,
-    onEnded: actions.onEnded,
-    onProgress: actions.onProgress,
-    }, dispatch)
+      updateSession: actions.updateSession,
+      updateActiveFolder: actions.updateActiveFolder,
+      updatePlayerAction: actions.updatePlayerAction,
+      playPause: actions.playPause,
+      stopPlaying: actions.stopPlaying,
+      toggleLoop: actions.toggleLoop,
+      onPlay: actions.onPlay,
+      onEnded: actions.onEnded,
+      onProgress: actions.onProgress,
+    },
+    dispatch
+  ),
 });
 
-export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App));
+export default hot(module)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

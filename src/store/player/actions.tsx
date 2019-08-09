@@ -1,10 +1,22 @@
-import { MediaPlayerState, UPDATE_PLAYER_SESSION, PLAY_PAUSE, STOP_PLAYING, TOGGLE_LOOP, ON_PLAY, ON_ENDED, ON_PROGRESS, PlayerActionTypes } from './types'
+import {
+  MediaPlayerState,
+  UPDATE_PLAYER_SESSION,
+  PLAY_PAUSE,
+  STOP_PLAYING,
+  TOGGLE_LOOP,
+  ON_PLAY,
+  ON_ENDED,
+  ON_PROGRESS,
+  PlayerActionTypes,
+} from "./types";
 
-export function updatePlayerAction(newPlayerState: MediaPlayerState): PlayerActionTypes {
-    return {
-        type: UPDATE_PLAYER_SESSION,
-        payload: newPlayerState
-      }
+export function updatePlayerAction(
+  newPlayerState: MediaPlayerState
+): PlayerActionTypes {
+  return {
+    type: UPDATE_PLAYER_SESSION,
+    payload: newPlayerState,
+  };
 }
 
 export function playPause(): PlayerActionTypes {
@@ -39,7 +51,7 @@ export function onEnded(): PlayerActionTypes {
 export function onProgress(playState: any): PlayerActionTypes {
   return {
     type: ON_PROGRESS,
-    payload: playState.played
+    payload: playState.played,
   };
 }
 /*export function setNewURL(newURL: URL): PlayerActionTypes {
@@ -48,5 +60,3 @@ export function onProgress(playState: any): PlayerActionTypes {
         tempState = ...MediaPlayerState
         payload: newURL
       }*/
-
-

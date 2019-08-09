@@ -89,5 +89,8 @@
     "directories": {
       "buildResources": "assets"
     }
+  },
+  "prettier": {
+    "trailingComma": "es5"
   }
 }
