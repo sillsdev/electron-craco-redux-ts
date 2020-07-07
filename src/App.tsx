@@ -11,6 +11,8 @@ import * as actions from './store';
 import TestFs from './components/testFs';
 import PlayerZone from './components/player';
 const isElectron = process.env.REACT_APP_MODE === 'electron';
+const ipc = require('electron').ipcRenderer;
+const { remote } = require('electron');
 export type UpdatePlayerParam = React.SyntheticEvent<{ value: string }>;
 
 interface StateProps {
@@ -35,13 +37,18 @@ interface AppProps extends StateProps, DispatchProps {
   // local stat props go here
 }
 
-class App extends React.Component<AppProps> {
+const initState = {
+  user: 'User',
+};
+
+class App extends React.Component<AppProps, typeof initState> {
+  constructor(props: AppProps) {
+    super(props);
+    this.state = { ...initState };
+  }
+
   componentDidMount() {
-    const {
-      updateActiveFolder,
-      updateSession,
-      updatePlayerAction,
-    } = this.props;
+    const { updateActiveFolder, updatePlayerAction } = this.props;
 
     if (isElectron) {
       updateActiveFolder({
@@ -56,12 +63,6 @@ class App extends React.Component<AppProps> {
         loaded: true,
       });
     }
-    updateSession({
-      loggedIn: true,
-      session: 'my_session',
-      userName: 'User',
-      clicks: 0,
-    });
     updatePlayerAction({
       url: 'http://www.youtube.com/watch?v=Fc1P-AEaEp8',
       //url: "https://www.youtube.com/watch?v=Hz63M3v11nE&t=7",
@@ -77,6 +78,27 @@ class App extends React.Component<AppProps> {
       loop: false,
       seeking: false,
     });
+  }
+
+  componentDidUpdate() {
+    const { updateSession } = this.props;
+
+    // const profile = authService.getProfile();
+    if (isElectron) {
+      ipc.invoke('get-profile').then((result: any) => {
+        if (result?.name !== this.state.user) {
+          this.setState({ user: result?.name });
+        }
+      });
+    }
+    if (this.state.user && this.props.system.userName !== this.state.user) {
+      updateSession({
+        loggedIn: true,
+        session: 'my_session',
+        userName: this.state?.user || 'User',
+        clicks: 0,
+      });
+    }
   }
 
   // Player Features
@@ -114,13 +136,23 @@ class App extends React.Component<AppProps> {
     console.log('onUpdatePath not defined');
   };
 
+  logout = () => {
+    if (isElectron) {
+      ipc.invoke('logout');
+      remote.getCurrentWindow().close();
+    }
+  };
+
   render() {
+    const { user } = this.state;
     const { player } = this.props;
+
     return (
       <div className="App">
         <header className="App-header">
           <p>
-            Welcome to <code>Electron - Craco - Redux - Boilerplate</code>.
+            Welcome to <code>Electron - Craco - Redux - Boilerplate</code>.{' '}
+            <button onClick={this.logout}>{'Logout'}</button>
           </p>
         </header>
         <div className="App-body">
@@ -142,6 +174,7 @@ class App extends React.Component<AppProps> {
             />
           </div>
           <div className="DetailsZone">
+            <p>{`User: ${user}`}</p>
             <p>
               {process.env.REACT_APP_MODE}: {process.env.NODE_ENV}
             </p>

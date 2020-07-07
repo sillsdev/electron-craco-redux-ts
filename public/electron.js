@@ -1,65 +1,22 @@
-const electron = require('electron');
-const ipcMain = electron.ipcMain;
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { app, ipcMain } = require('electron');
 
-const path = require('path');
-const isDev = require('electron-is-dev');
+const createAppWindow = require('./app-process');
+const { createAuthWindow, createLogoutWindow } = require('./auth-process');
+const authService = require('./auth-service');
 
-let mainWindow;
-let imageWindow;
-let settingsWindow;
-
-function createWindow() {
-  mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
-    icon: path.join(__dirname, 'favicon.ico'),
-    webPreferences: { webSecurity: false, nodeIntegration: true },
-  });
-  imageWindow = new BrowserWindow({
-    width: 600,
-    height: 600,
-    parent: mainWindow,
-    show: false,
-  });
-  settingsWindow = new BrowserWindow({
-    width: 600,
-    height: 600,
-    parent: mainWindow,
-    show: false,
-  });
-
-  mainWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  );
-  imageWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000/image'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  );
-  settingsWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000/settings'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  );
-
-  mainWindow.on('closed', () => (mainWindow = null));
-
-  imageWindow.on('close', (e) => {
-    e.preventDefault();
-    imageWindow.hide();
-  });
-
-  settingsWindow.on('close', (e) => {
-    e.preventDefault();
-    settingsWindow.hide();
-  });
+async function showWindow() {
+  try {
+    await authService.refreshTokens();
+    return createAppWindow();
+  } catch (err) {
+    createAuthWindow();
+  }
 }
 
-app.on('ready', createWindow);
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', showWindow);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -67,17 +24,10 @@ app.on('window-all-closed', () => {
   }
 });
 
-app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow();
-  }
+ipcMain.handle('get-profile', () => {
+  return authService.getProfile();
 });
 
-ipcMain.on('toggle-image', (event, arg) => {
-  imageWindow.show();
-  imageWindow.webContents.send('image', arg);
-});
-
-ipcMain.on('toggle-settings', () => {
-  settingsWindow.isVisible() ? settingsWindow.hide() : settingsWindow.show();
+ipcMain.handle('logout', () => {
+  createLogoutWindow();
 });
