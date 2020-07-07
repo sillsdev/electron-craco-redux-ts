@@ -1,10 +1,10 @@
-const electron = require("electron");
+const electron = require('electron');
 const ipcMain = electron.ipcMain;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
-const path = require("path");
-const isDev = require("electron-is-dev");
+const path = require('path');
+const isDev = require('electron-is-dev');
 
 let mainWindow;
 let imageWindow;
@@ -14,7 +14,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 680,
-    icon: path.join(__dirname, "favicon.ico"),
+    icon: path.join(__dirname, 'favicon.ico'),
     webPreferences: { webSecurity: false, nodeIntegration: true },
   });
   imageWindow = new BrowserWindow({
@@ -32,52 +32,52 @@ function createWindow() {
 
   mainWindow.loadURL(
     isDev
-      ? "http://localhost:3000"
-      : `file://${path.join(__dirname, "../build/index.html")}`
+      ? 'http://localhost:3000'
+      : `file://${path.join(__dirname, '../build/index.html')}`
   );
   imageWindow.loadURL(
     isDev
-      ? "http://localhost:3000/image"
-      : `file://${path.join(__dirname, "../build/index.html")}`
+      ? 'http://localhost:3000/image'
+      : `file://${path.join(__dirname, '../build/index.html')}`
   );
   settingsWindow.loadURL(
     isDev
-      ? "http://localhost:3000/settings"
-      : `file://${path.join(__dirname, "../build/index.html")}`
+      ? 'http://localhost:3000/settings'
+      : `file://${path.join(__dirname, '../build/index.html')}`
   );
 
-  mainWindow.on("closed", () => (mainWindow = null));
+  mainWindow.on('closed', () => (mainWindow = null));
 
-  imageWindow.on("close", e => {
+  imageWindow.on('close', (e) => {
     e.preventDefault();
     imageWindow.hide();
   });
 
-  settingsWindow.on("close", e => {
+  settingsWindow.on('close', (e) => {
     e.preventDefault();
     settingsWindow.hide();
   });
 }
 
-app.on("ready", createWindow);
+app.on('ready', createWindow);
 
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on("activate", () => {
+app.on('activate', () => {
   if (mainWindow === null) {
     createWindow();
   }
 });
 
-ipcMain.on("toggle-image", (event, arg) => {
+ipcMain.on('toggle-image', (event, arg) => {
   imageWindow.show();
-  imageWindow.webContents.send("image", arg);
+  imageWindow.webContents.send('image', arg);
 });
 
-ipcMain.on("toggle-settings", () => {
+ipcMain.on('toggle-settings', () => {
   settingsWindow.isVisible() ? settingsWindow.hide() : settingsWindow.show();
 });

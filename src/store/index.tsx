@@ -1,10 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { playerCleanStore, playerReducer } from "./player/reducers";
-import { treeCleanStore, treeReducer } from "./tree/reducers";
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { playerCleanStore, playerReducer } from './player/reducers';
+import { treeCleanStore, treeReducer } from './tree/reducers';
 
-import { composeWithDevTools } from "redux-devtools-extension";
-import { systemReducer } from "./system/reducers";
-import thunkMiddleware from "redux-thunk";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { systemReducer } from './system/reducers';
+import thunkMiddleware from 'redux-thunk';
 
 const appReducer = combineReducers({
   system: systemReducer,
@@ -14,9 +14,9 @@ const appReducer = combineReducers({
 
 const allReducers = (state: any, action: any) => {
   if (
-    action.type === "ON_NEW_FOLDER" ||
-    action.types === "ON_RELOAD_FOLDER" ||
-    action.type === "HARD_RESET_APP"
+    action.type === 'ON_NEW_FOLDER' ||
+    action.types === 'ON_RELOAD_FOLDER' ||
+    action.type === 'HARD_RESET_APP'
   ) {
     state = {
       ...state,
@@ -40,6 +40,6 @@ export default function configureStore() {
 
   return store;
 }
-export * from "./system/actions";
-export * from "./player/actions";
-export * from "./tree/actions";
+export * from './system/actions';
+export * from './player/actions';
+export * from './tree/actions';

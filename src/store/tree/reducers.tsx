@@ -1,18 +1,18 @@
 // src/store/tree/reducers.ts
 
-import * as types from "./types";
+import * as types from './types';
 
-const env = process.env.REACT_APP_MODE + "";
+const env = process.env.REACT_APP_MODE + '';
 
 export const treeCleanStore: types.TreeState = {
   availableFiles: [],
   sourceMedia: [],
   annotMedia: [],
   env: env,
-  folderName: "",
-  path: "",
+  folderName: '',
+  path: '',
   loaded: false,
-  prevPath: "",
+  prevPath: '',
 };
 
 export function treeReducer(

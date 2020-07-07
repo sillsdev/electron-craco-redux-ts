@@ -1,16 +1,16 @@
-import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import "./App.css";
-import { hot } from "react-hot-loader";
-import { AppState } from "./store";
-import { SystemState } from "./store/system/types";
-import { TreeState } from "./store/tree/types";
-import { MediaPlayerState } from "./store/player/types";
-import * as actions from "./store";
-import TestFs from "./components/testFs";
-import PlayerZone from "./components/player";
-const isElectron = process.env.REACT_APP_MODE === "electron";
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import './App.css';
+import { hot } from 'react-hot-loader';
+import { AppState } from './store';
+import { SystemState } from './store/system/types';
+import { TreeState } from './store/tree/types';
+import { MediaPlayerState } from './store/player/types';
+import * as actions from './store';
+import TestFs from './components/testFs';
+import PlayerZone from './components/player';
+const isElectron = process.env.REACT_APP_MODE === 'electron';
 export type UpdatePlayerParam = React.SyntheticEvent<{ value: string }>;
 
 interface StateProps {
@@ -45,25 +45,25 @@ class App extends React.Component<AppProps> {
 
     if (isElectron) {
       updateActiveFolder({
-        env: "electron",
-        path: "local",
+        env: 'electron',
+        path: 'local',
         loaded: true,
       });
     } else {
       updateActiveFolder({
-        env: "web",
-        path: "bing",
+        env: 'web',
+        path: 'bing',
         loaded: true,
       });
     }
     updateSession({
       loggedIn: true,
-      session: "my_session",
-      userName: "User",
+      session: 'my_session',
+      userName: 'User',
       clicks: 0,
     });
     updatePlayerAction({
-      url: "http://www.youtube.com/watch?v=Fc1P-AEaEp8",
+      url: 'http://www.youtube.com/watch?v=Fc1P-AEaEp8',
       //url: "https://www.youtube.com/watch?v=Hz63M3v11nE&t=7",
       playing: false,
       volume: 0.8,
@@ -82,36 +82,36 @@ class App extends React.Component<AppProps> {
   // Player Features
   playPause = () => {
     this.props.playPause();
-    console.log("onPlay/PauseApp");
+    console.log('onPlay/PauseApp');
   };
   stopPlaying = () => {
     this.props.stopPlaying();
-    console.log("onStopApp");
+    console.log('onStopApp');
   };
   toggleLoop = () => {
     this.props.toggleLoop();
-    console.log("ToggleLoopApp");
+    console.log('ToggleLoopApp');
   };
   onPlay = () => {
     this.props.onPlay();
-    console.log("onPlayApp");
+    console.log('onPlayApp');
   };
   onEnded = () => {
     this.props.onEnded();
-    console.log("onEndedApp");
+    console.log('onEndedApp');
   };
   onProgress = (playState: any) => {
     const { onProgress, player } = this.props;
 
     onProgress(playState);
-    console.log("onProgressApp", playState);
+    console.log('onProgressApp', playState);
     if (!player.seeking) {
       //this.setState({player: {played: playState.played}})
       //this.setState(playState)
     }
   };
   onUpdatePath = () => {
-    console.log("onUpdatePath not defined");
+    console.log('onUpdatePath not defined');
   };
 
   render() {

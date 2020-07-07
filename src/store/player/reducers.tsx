@@ -1,8 +1,8 @@
 // src/store/tree/reducers.ts
-import * as types from "./types";
+import * as types from './types';
 
 export const playerCleanStore: types.MediaPlayerState = {
-  url: "",
+  url: '',
   playing: false,
   volume: 0.8,
   muted: false,
@@ -36,7 +36,7 @@ export function playerReducer(
       return {
         ...state,
         playing: false,
-        url: "none",
+        url: 'none',
       };
     }
     case types.TOGGLE_LOOP: {

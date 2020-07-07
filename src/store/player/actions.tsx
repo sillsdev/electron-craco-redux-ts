@@ -8,7 +8,7 @@ import {
   ON_ENDED,
   ON_PROGRESS,
   PlayerActionTypes,
-} from "./types";
+} from './types';
 
 export function updatePlayerAction(
   newPlayerState: MediaPlayerState

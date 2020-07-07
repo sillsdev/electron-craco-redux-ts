@@ -7,7 +7,7 @@ export interface SystemState {
 }
 
 // Describing the different ACTION NAMES available
-export const UPDATE_SESSION = "UPDATE_SESSION";
+export const UPDATE_SESSION = 'UPDATE_SESSION';
 
 interface UpdateSessionAction {
   type: typeof UPDATE_SESSION;

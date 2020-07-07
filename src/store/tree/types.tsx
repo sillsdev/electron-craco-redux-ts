@@ -32,7 +32,7 @@ export interface ActiveFolderState {
 }
 
 // Describing the different ACTION NAMES available
-export const UPDATE_TREE = "UPDATE_TREE";
+export const UPDATE_TREE = 'UPDATE_TREE';
 
 interface UpdateActiveFolder {
   type: typeof UPDATE_TREE;

@@ -9,16 +9,17 @@ The `npm install` command will install the dependencies.
 ### Electron Debugging (from vscode)
 
 1. From the Chrome browser, install the [react devtools plugin](https://chrome.google.com/webstore/detail/react-developer-tools) and the [redux devtools plugin](https://chrome.google.com/webstore/detail/redux-devtools).
- 
+
 2. Use the command:
-`npm run electron-dev`
-to force the install of react and redux devtools into electron.
+   `npm run electron-dev`
+   to force the install of react and redux devtools into electron.
 
 3. From the debugging tab in VsCode, select `Electron All` from the drop down and press the play button. The page will hot-reload if you make edits.
 
 Subsequently, you can press `F5` to launch Electron with the Chromium browser. If breakpoints are disappearing, check that the debug chooser is still set to `Electron All`.
 
 ### Launching the Web version
+
 `npm start` runs the app in the development mode.<br>
 It opens [http://localhost:3000](http://localhost:3000) in the default browser.
 
@@ -33,6 +34,7 @@ You will also see any lint errors in the console.
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### Build Electron App
+
 ```
 npm run build
 npm run dist
@@ -62,6 +64,25 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-
 Webpack installed with:
 https://www.codementor.io/randyfindley/how-to-build-an-electron-app-using-create-react-app-and-electron-builder-ss1k0sfer
+
+## Updating Dependencies
+
+To update the dependencies it is helpfule to use the command:
+
+```
+    npx create-react-app crat --template="typescript"
+```
+
+which will show you the latest dependencies recommended by create-react-app.
+
+Additional the command `npm update` will go through the list of dependencies and recommend updates to the currently used packages. Once the packages dependencies are updated it is important to test the whole system using:
+
+```
+    rm -Force -Recurse node_modules
+    rm package-lock.json
+    npm install
+```
+
+Which reloads all the dependencies based on what is currently specificified in the package.json file.

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import ReactPlayer from "react-player";
-import { UpdatePlayerParam } from "../App";
-import "../App.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ReactPlayer from 'react-player';
+import { UpdatePlayerParam } from '../App';
+import '../App.css';
 
 //updatePlayerAction,
 
@@ -43,11 +43,11 @@ class PlayerZone extends Component<PlayProps> {
     this.setState({ volume: parseFloat(e.target.value) });
   };
   onPause = () => {
-    console.log("onPause");
+    console.log('onPause');
     this.setState({ playing: false });
   };
   onDuration = (duration: any) => {
-    console.log("onDuration", duration);
+    console.log('onDuration', duration);
     this.setState({ duration });
   };
 
@@ -73,14 +73,14 @@ class PlayerZone extends Component<PlayProps> {
             playbackRate={playbackRate}
             volume={volume}
             muted={muted}
-            onReady={() => console.log("onReady")}
-            onStart={() => console.log("onStart")}
+            onReady={() => console.log('onReady')}
+            onStart={() => console.log('onStart')}
             onPlay={onPlay}
             onPause={this.onPause}
-            onBuffer={() => console.log("onBuffer")}
-            onSeek={e => console.log("onSeek", e)}
+            onBuffer={() => console.log('onBuffer')}
+            onSeek={(e) => console.log('onSeek', e)}
             onEnded={onEnded}
-            onError={e => console.log("onError", e)}
+            onError={(e) => console.log('onError', e)}
             onProgress={onProgress}
             onDuration={this.onDuration}
           />
@@ -94,7 +94,7 @@ class PlayerZone extends Component<PlayProps> {
                 <td>
                   <button onClick={stopPlaying}>Stop</button>
                   <button onClick={playPause}>
-                    {playing ? "Pause" : "Play"}
+                    {playing ? 'Pause' : 'Play'}
                   </button>
                 </td>
               </tr>

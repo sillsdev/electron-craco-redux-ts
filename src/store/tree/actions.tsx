@@ -1,4 +1,4 @@
-import { ActiveFolderState, UPDATE_TREE } from "./types";
+import { ActiveFolderState, UPDATE_TREE } from './types';
 
 export function updateActiveFolder(newFolder: ActiveFolderState) {
   return {
