@@ -53,12 +53,12 @@ function createWindow() {
 
   mainWindow.on("closed", () => (mainWindow = null));
 
-  imageWindow.on("close", e => {
+  imageWindow.on("close", (e) => {
     e.preventDefault();
     imageWindow.hide();
   });
 
-  settingsWindow.on("close", e => {
+  settingsWindow.on("close", (e) => {
     e.preventDefault();
     settingsWindow.hide();
   });
@@ -70,7 +70,7 @@ app.on("ready", async () => {
   BrowserWindow.addDevToolsExtension(
     path.join(
       os.homedir(),
-      "/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0"
+      "/AppData/Local/Google/Chrome/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.7.0_0"
     )
   );
   BrowserWindow.addDevToolsExtension(

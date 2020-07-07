@@ -183,9 +183,4 @@ const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   ),
 });
 
-export default hot(module)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App));
